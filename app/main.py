@@ -1,4 +1,3 @@
-from app.knights import KNIGHTS
 from app.battle_preparation import prepare_knight
 from app.battle import fight
 
@@ -9,10 +8,9 @@ def battle(knights_config: dict) -> dict:
     mordred = knights_config["mordred"]
     red_knight = knights_config["red_knight"]
 
-    prepare_knight(lancelot)
-    prepare_knight(arthur)
-    prepare_knight(mordred)
-    prepare_knight(red_knight)
+    for knight in knights_config.values():
+        prepare_knight(knight)
+
     # BATTLE:
     # 1 Lancelot vs Mordred:
     fight(lancelot, mordred)
@@ -25,6 +23,3 @@ def battle(knights_config: dict) -> dict:
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
     }
-
-
-print(battle(KNIGHTS))
